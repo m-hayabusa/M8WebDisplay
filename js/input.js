@@ -38,12 +38,12 @@ const defaultInputMap = Object.freeze({
     Gamepad15: 'right',
     Gamepad67: 'right',
     Gamepad8: 'select',
-    Gamepad2: 'select',
+    Gamepad2: 'option',
     Gamepad5: 'select',
     Gamepad9: 'start',
-    Gamepad3: 'start',
-    Gamepad1: 'option',
-    Gamepad0: 'edit'
+    Gamepad3: 'select',
+    Gamepad1: 'edit',
+    Gamepad0: 'start'
 });
 
 const inputMap = {};
@@ -171,35 +171,9 @@ function pollGamepads() {
         }
 
         if (gamepad.mapping !== 'standard') {
+            // for DevTerm
             for (let i = 0; i < gamepad.axes.length; i++) {
-                if (state.axes[i] === false)
-                    continue;
-
-                // Heuristics to locate a d-pad or
-                // "hat switch" masquerading as an axis
-                const value = (gamepad.axes[i] + 1) * 3.5;
-                const error = Math.abs(Math.round(value) - value);
-                const hatPosition = hatMap[Math.round(value)];
-                if (error > 4.8e-7 || hatPosition === undefined) {
-                    state.axes[i] = false;
-                    continue;
-                } else if (value === 0 && state.axes[i] !== true) {
-                    continue;
-                } else {
-                    state.axes[i] = true;
-                }
-
-                for (let b = 0; b < 4; b++) {
-                    const pressed = hatPosition[b];
-                    if (state.buttons[64 + b] !== pressed) {
-                        state.buttons[64 + b] = pressed;
-                        handleInput(`Gamepad${64 + b}`, pressed);
-                    }
-                }
-            }
-        } else {
-            for (let i = 0; i < gamepad.axes.length; i++) {
-            const position = gamepad.axes[i + 1 - i % 2 * 2];
+                const position = gamepad.axes[i + 1 - i % 2 * 2];
                 const minus = i * 2;
                 const plus = i * 2 + 1;
 
