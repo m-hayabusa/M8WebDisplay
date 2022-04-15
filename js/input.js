@@ -197,6 +197,31 @@ function pollGamepads() {
                     }
                 }
             }
+        } else {
+            for (let i = 0; i < gamepad.axes.length; i++) {
+            const position = gamepad.axes[i + 1 - i % 2 * 2];
+                const minus = i * 2;
+                const plus = i * 2 + 1;
+
+                let minus_state = false
+                let plus_state = false
+                if (0.8 < position) {
+                    minus_state = false;
+                    plus_state = true;
+                } else if (position < -0.8) {
+                    minus_state = true;
+                    plus_state = false;
+                }
+
+                if (state.axes[plus] != plus_state) {
+                    state.axes[plus] = plus_state;
+                    handleInput(`Gamepad${64 + plus}`, plus_state);
+                }
+                if (state.axes[minus] != minus_state) {
+                    state.axes[minus] = minus_state;
+                    handleInput(`Gamepad${64 + minus}`, minus_state);
+                }
+            }
         }
 
         for (let i = 0; i < gamepad.buttons.length; i++) {
