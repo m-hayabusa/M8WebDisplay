@@ -70,15 +70,22 @@ export function handleKey(input, isDown, e) {
 
         case 'velDown':
             if (isDown) {
-                vel = Math.max(vel - 8, 7);
+                if (isShiftKeyDown) {
+                    vel = Math.max(vel - 1, 7);
+                } else {
+                    vel = Math.max(vel - 8, 7);
+                }
             }
             break;
 
         case 'velUp':
             if (isDown) {
-                vel = Math.min(vel + 8, 127);
+                if (isShiftKeyDown) {
+                    vel = Math.min(vel + 1, 127);
+                } else {
+                    vel = Math.min(vel + 8, 127);
+                }
             }
-            break;
 
         case 'shiftKey':
             if (isDown) {
