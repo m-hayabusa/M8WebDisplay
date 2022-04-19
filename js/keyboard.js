@@ -4,29 +4,52 @@
 import * as Settings from './settings.js';
 
 const keyMap = Object.freeze({
-    KeyA: 0,
-    KeyW: 1,
-    KeyS: 2,
-    KeyE: 3,
-    KeyD: 4,
-    KeyF: 5,
-    KeyT: 6,
-    KeyG: 7,
-    KeyY: 8,
-    KeyH: 9,
-    KeyU: 10,
-    KeyJ: 11,
-    KeyK: 12,
-    KeyO: 13,
-    KeyL: 14,
-    KeyP: 15,
-    Semicolon: 16,
-    Quote: 17,
+    Tab: -2,
+    ShiftLeft: -1,
+    KeyZ: 0,
+    KeyS: 1,
+    KeyX: 2,
+    KeyD: 3,
+    KeyC: 4,
+    KeyV: 5,
+    KeyG: 6,
+    KeyB: 7,
+    KeyH: 8,
+    KeyN: 9,
+    KeyJ: 10,
+    KeyM: 11,
+    Comma: 12,
+    KeyL: 13,
+    Period: 14,
+    Semicolon: 15,
+    Slash: 16,
+
+    Escape: -1 + 12,
+    KeyQ: 0 + 12,
+    Digit1: 1 + 12,
+    KeyW: 2 + 12,
+    Digit2: 3 + 12,
+    KeyE: 4 + 12,
+    KeyR: 5 + 12,
+    Digit4: 6 + 12,
+    KeyT: 7 + 12,
+    Digit5: 8 + 12,
+    KeyY: 9 + 12,
+    Digit6: 10 + 12,
+    KeyU: 11 + 12,
+    KeyI: 12 + 12,
+    Digit8: 13 + 12,
+    KeyO: 14 + 12,
+    Digit9: 15 + 12,
+    KeyP: 16 + 12,
+    Backslash: 17 + 12,
+    Backspace: 19 + 12,
+
     BracketLeft: 'velDown',
     BracketRight: 'velUp',
     Minus: 'octDown',
     Equal: 'octUp',
-    ShiftLeft: 'shiftKey'
+    ShiftRight: 'shiftKey'
 });
 
 let connection;
@@ -43,6 +66,8 @@ export function handleKey(input, isDown, e) {
     const key = keyMap[input];
     if (key === undefined)
         return false;
+
+    e.preventDefault();
 
     if (e.repeat)
         return true;
