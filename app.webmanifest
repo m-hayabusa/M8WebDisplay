@@ -3,7 +3,7 @@
   "short_name": "M8 Display",
   "description": "Web display for M8 Headless",
   "start_url": ".",
-  "display": "standalone",
+  "display": "fullscreen",
   "background_color": "#000",
   "theme_color": "#000",
   "icons": [
