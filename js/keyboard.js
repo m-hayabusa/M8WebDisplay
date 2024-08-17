@@ -4,7 +4,6 @@
 import * as Settings from './settings.js';
 
 const keyMap = Object.freeze({
-    Tab: -2,
     ShiftLeft: -1,
     KeyZ: 0,
     KeyS: 1,
@@ -24,7 +23,7 @@ const keyMap = Object.freeze({
     Semicolon: 15,
     Slash: 16,
 
-    Escape: -1 + 12,
+    Tab: -1 + 12,
     KeyQ: 0 + 12,
     Digit1: 1 + 12,
     KeyW: 2 + 12,
@@ -42,13 +41,19 @@ const keyMap = Object.freeze({
     KeyO: 14 + 12,
     Digit9: 15 + 12,
     KeyP: 16 + 12,
-    Backslash: 17 + 12,
-    Backspace: 19 + 12,
+    BracketLeft: 17 + 12,
+    Minus: 18 + 12,
+    BracketRight: 19 + 12,
+    Equal: 20 + 12,
+    Backslash: 21 + 12,
+    Delete: 22 + 12,
+    Backspace: 23 + 12,
 
-    BracketLeft: 'velDown',
-    BracketRight: 'velUp',
-    Minus: 'octDown',
-    Equal: 'octUp',
+    ArrowUp: 'velUp',
+    ArrowDown: 'velDown',
+    ArrowLeft: 'octDown',
+    ArrowRight: 'octUp',
+
     ShiftRight: 'shiftKey'
 });
 

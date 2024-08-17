@@ -20,30 +20,30 @@ const keyBitMap = {
 };
 
 const defaultInputMap = Object.freeze({
-    ArrowUp: 'up',
-    ArrowDown: 'down',
-    ArrowLeft: 'left',
-    ArrowRight: 'right',
-    ShiftLeft: 'select',
     Space: 'start',
-    KeyZ: 'option',
-    KeyX: 'edit',
 
-    Gamepad12: 'up',
-    Gamepad64: 'up',
-    Gamepad13: 'down',
-    Gamepad65: 'down',
-    Gamepad14: 'left',
-    Gamepad66: 'left',
-    Gamepad15: 'right',
-    Gamepad67: 'right',
-    Gamepad8: 'select',
-    Gamepad2: 'select',
-    Gamepad5: 'select',
-    Gamepad9: 'start',
-    Gamepad3: 'start',
-    Gamepad1: 'option',
-    Gamepad0: 'edit'
+    Gamepad0: 'edit', // A
+    Gamepad1: 'option', // B
+    Gamepad2: 'select', // X
+    Gamepad3: 'start', // Y
+    Gamepad4: 'select', // L1
+    Gamepad5: 'start',  // R1
+    Gamepad6: 'option', // L2
+    Gamepad7: 'edit', // R2
+    Gamepad8: 'select', // Select
+    Gamepad9: 'start', // Start
+    Gamepad12: 'up', // d-pad up
+    Gamepad13: 'down', // d-pad down
+    Gamepad14: 'left', // d-pad left 
+    Gamepad15: 'right', // d-pad right
+    "GamepadAxis1-": 'up', // LStick
+    "GamepadAxis1+": 'down',
+    "GamepadAxis0-": 'left',
+    "GamepadAxis0+": 'right',
+    "GamepadAxis3-": 'up', // RStick
+    "GamepadAxis3+": 'down',
+    "GamepadAxis2-": 'left',
+    "GamepadAxis2+": 'right',
 });
 
 const inputMap = {};
