@@ -60,7 +60,7 @@ const keyMap = Object.freeze({
 let connection;
 let enabled = true;
 let transpose = 36;
-let vel = 103;
+let vel = 0x64;
 let currentKey = null;
 let isShiftKeyDown = false;
 
@@ -101,9 +101,9 @@ export function handleKey(input, isDown, e) {
         case 'velDown':
             if (isDown) {
                 if (isShiftKeyDown) {
-                    vel = Math.max(vel - 1, 7);
+                    vel = Math.max(vel - 1, 1);
                 } else {
-                    vel = Math.max(vel - 8, 7);
+                    vel = Math.max((vel - vel % 8 + 4) - 8, 7);
                 }
             }
             break;
@@ -111,9 +111,9 @@ export function handleKey(input, isDown, e) {
         case 'velUp':
             if (isDown) {
                 if (isShiftKeyDown) {
-                    vel = Math.min(vel + 1, 127);
+                    vel = Math.min(vel + 1, 0x7F);
                 } else {
-                    vel = Math.min(vel + 8, 127);
+                    vel = Math.min((vel - vel % 8 + 4) + 8, 0x7C);
                 }
             }
 
