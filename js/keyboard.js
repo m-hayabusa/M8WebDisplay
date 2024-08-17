@@ -25,14 +25,16 @@ const keyMap = Object.freeze({
     BracketLeft: 'velDown',
     BracketRight: 'velUp',
     Minus: 'octDown',
-    Equal: 'octUp'
+    Equal: 'octUp',
+    ShiftLeft: 'shiftKey'
 });
 
 let connection;
 let enabled = true;
-let oct = 3;
+let transpose = 36;
 let vel = 103;
 let currentKey = null;
+let isShiftKeyDown = false;
 
 export function handleKey(input, isDown, e) {
     if (!enabled || !e || e.ctrlKey || e.metaKey || e.altKey)
@@ -48,30 +50,53 @@ export function handleKey(input, isDown, e) {
     switch (key) {
         case 'octDown':
             if (isDown) {
-                oct = Math.max(oct - 1, 0);
+                if (isShiftKeyDown) {
+                    transpose = Math.max(transpose - 1, 0);
+                } else {
+                    transpose = Math.max(transpose - 12, transpose % 12);
+                }
             }
             break;
 
         case 'octUp':
             if (isDown) {
-                oct = Math.min(oct + 1, 10);
+                if (isShiftKeyDown) {
+                    transpose = Math.min(transpose + 1, 127);
+                } else {
+                    transpose = Math.min(transpose + 12, 120 + transpose % 12);
+                }
             }
             break;
 
         case 'velDown':
             if (isDown) {
-                vel = Math.max(vel - 8, 7);
+                if (isShiftKeyDown) {
+                    vel = Math.max(vel - 1, 7);
+                } else {
+                    vel = Math.max(vel - 8, 7);
+                }
             }
             break;
 
         case 'velUp':
             if (isDown) {
-                vel = Math.min(vel + 8, 127);
+                if (isShiftKeyDown) {
+                    vel = Math.min(vel + 1, 127);
+                } else {
+                    vel = Math.min(vel + 8, 127);
+                }
+            }
+
+        case 'shiftKey':
+            if (isDown) {
+                isShiftKeyDown = true;
+            } else {
+                isShiftKeyDown = false;
             }
             break;
 
         default:
-            const note = key + oct * 12;
+            const note = key + transpose;
             if (note > 128)
                 return false;
 
